@@ -2,6 +2,7 @@ package br.com.ruderson.spring_auth_template.controller;
 
 import br.com.ruderson.spring_auth_template.dto.LoginRequest;
 import br.com.ruderson.spring_auth_template.dto.LoginResponse;
+import br.com.ruderson.spring_auth_template.dto.RefreshRequest;
 import br.com.ruderson.spring_auth_template.service.AuthService;
 import br.com.ruderson.spring_auth_template.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
         LoginResponse response = authService.authenticate(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<LoginResponse> refresh(@RequestBody RefreshRequest request) {
+        LoginResponse response = authService.refresh(request);
         return ResponseEntity.ok(response);
     }
 }

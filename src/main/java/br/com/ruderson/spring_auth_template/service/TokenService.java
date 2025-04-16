@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class TokenService {
 
     private final long expiration = 300L;
+    private static final long REFRESH_TOKEN_EXPIRATION = 7L;
 
     @Autowired
     private JwtEncoder jwtEncoder;
