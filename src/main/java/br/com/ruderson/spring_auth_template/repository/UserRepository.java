@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String username);
 
     @Query(nativeQuery = true, value =
             "SELECT tb_user.email AS username, tb_user.password, tb_role.id AS roleId, tb_role.authority " +
